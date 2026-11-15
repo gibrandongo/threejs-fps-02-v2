@@ -1,0 +1,83 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#0b0e12;font-family:"Segoe UI",system-ui,Arial,sans-serif;color:#e8ecf1}
+#app{position:fixed;inset:0}
+#app canvas{display:block}
+.hidden{display:none!important}
+.overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,8,12,.72);z-index:30;backdrop-filter:blur(2px)}
+.panel{background:#12161d;border:1px solid #2b3644;border-radius:10px;padding:22px 26px;max-width:760px;width:92%;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.panel.wide{max-width:860px}
+h1{font-size:52px;letter-spacing:6px;color:#f2f5f8}
+h1 span{color:#ffb02e}
+h2{font-size:22px;letter-spacing:2px;margin-bottom:6px}
+h3{font-size:13px;letter-spacing:2px;color:#ffb02e;margin:10px 0 6px}
+.tagline{color:#9fb0c3;margin:4px 0 10px}
+.sub{color:#9fb0c3;font-size:13px;margin-top:8px}
+.sub.small{font-size:12px;color:#6d7d8f}
+.menu-cols{display:flex;gap:28px}
+.menu-cols>div{flex:1}
+.menu-cols ul{list-style:none}
+.menu-cols li{font-size:13.5px;line-height:1.55;color:#c8d2de;padding:3px 0}
+.menu-cols b{color:#fff}
+button{cursor:pointer;background:#ffb02e;color:#14100a;border:0;border-radius:6px;padding:13px 26px;font-size:16px;font-weight:700;letter-spacing:1px;margin-top:16px}
+button:hover{background:#ffc95e}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:10}
+#minimap{position:absolute;top:14px;left:14px;border:2px solid rgba(255,255,255,.25);border-radius:6px;background:rgba(8,12,16,.72)}
+#topbar{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:stretch}
+.teamscore{display:flex;align-items:center;gap:10px;background:rgba(8,12,16,.72);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:6px 14px;font-size:20px;font-weight:800}
+.teamscore .tname{font-size:12px;letter-spacing:2px}
+#teamA{color:#5ec8e8}#teamB{color:#ffb02e}
+#timerbox{background:rgba(8,12,16,.72);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:4px 16px;text-align:center}
+#timer{font-size:22px;font-weight:800}
+#roundlabel{font-size:10px;letter-spacing:2px;color:#9fb0c3}
+#bombstatus{position:absolute;top:76px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;letter-spacing:1px;color:#ff5d5d;text-shadow:0 1px 3px #000}
+#killfeed{position:absolute;top:14px;right:14px;text-align:right;font-size:13px}
+#killfeed div{background:rgba(8,12,16,.7);border-radius:4px;padding:4px 8px;margin-bottom:4px}
+#killfeed .kA{color:#5ec8e8}#killfeed .kB{color:#ffb02e}#killfeed .kw{color:#ff5d5d}
+#crosshair{position:absolute;left:50%;top:50%;width:0;height:0}
+.ch{position:absolute;background:#e8f4ff;box-shadow:0 0 2px #000}
+.ch.l{left:calc(-1 * var(--gap,9px) - 9px);top:-1px;width:9px;height:2px}
+.ch.r{left:var(--gap,9px);top:-1px;width:9px;height:2px}
+.ch.t{left:-1px;top:calc(-1 * var(--gap,9px) - 9px);width:2px;height:9px}
+.ch.b{left:-1px;top:var(--gap,9px);width:2px;height:9px}
+.ch.dot{left:-1.5px;top:-1.5px;width:3px;height:3px;border-radius:50%}
+#hitmarker{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;opacity:0}
+#hitmarker::before,#hitmarker::after{content:"";position:absolute;left:12px;top:0;width:2px;height:26px;background:#ff4040;transform:rotate(45deg)}
+#hitmarker::after{transform:rotate(-45deg)}
+#hitmarker.kill::before,#hitmarker.kill::after{background:#ffb02e}
+#bottombar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;padding:18px 22px}
+#healthbox,#ammobox{background:rgba(8,12,16,.72);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 16px;min-width:170px}
+#hpnum{font-size:40px;font-weight:800;line-height:1}
+#hplabel{font-size:10px;letter-spacing:3px;color:#9fb0c3}
+#armorbar{height:6px;background:#22303c;border-radius:3px;margin-top:8px;overflow:hidden}
+#armorfill{height:100%;width:0%;background:#5ec8e8}
+#armorlabel{font-size:10px;letter-spacing:2px;color:#9fb0c3;margin-top:3px}
+#ammobox{text-align:right}
+#ammo{font-size:36px;font-weight:800;line-height:1}
+#reserve{font-size:18px;color:#9fb0c3}
+#weaponname{font-size:11px;letter-spacing:2px;color:#c8d2de;margin-top:2px}
+#money{font-size:18px;font-weight:800;color:#7ee081;margin-top:4px}
+#grenades{font-size:12px;color:#ffb02e;margin-top:2px}
+#centerinfo{text-align:center;flex:1}
+#hint{font-size:14px;font-weight:700;color:#fff;text-shadow:0 1px 4px #000;min-height:20px}
+#plantbar{width:280px;height:10px;background:rgba(0,0,0,.6);border:1px solid #ffb02e;border-radius:5px;margin:6px auto 0;overflow:hidden;display:none}
+#plantfill{height:100%;width:0%;background:#ffb02e}
+#objective{font-size:12px;letter-spacing:1px;color:#c8d2de;text-shadow:0 1px 3px #000;margin-top:6px}
+#banner{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);text-align:center;font-size:44px;font-weight:900;letter-spacing:4px;text-shadow:0 2px 12px #000}
+#banner .sub2{display:block;font-size:16px;letter-spacing:2px;color:#dfe8f2;margin-top:8px}
+#vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 120px rgba(255,0,0,0);transition:box-shadow .15s}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#buygrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.buyitem{pointer-events:auto;cursor:pointer;background:#1a212b;border:1px solid #2b3644;border-radius:8px;padding:10px 12px;text-align:left;color:#e8ecf1}
+.buyitem:hover{border-color:#ffb02e}
+.buyitem.owned{border-color:#5ec8e8}
+.buyitem.cant{opacity:.45}
+.buyitem .bn{font-weight:800;font-size:15px}
+.buyitem .bp{float:right;color:#7ee081;font-weight:800}
+.buyitem .bd{font-size:12px;color:#9fb0c3;margin-top:3px}
+#buy .panel{pointer-events:auto}
+#scoreboard table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+#scoreboard th,#scoreboard td{padding:6px 8px;text-align:left;border-bottom:1px solid #232c37}
+#scoreboard th{color:#9fb0c3;font-size:11px;letter-spacing:2px}
+#scoreboard .rowA{color:#5ec8e8}#scoreboard .rowB{color:#ffb02e}
+#errbox{position:fixed;left:10px;bottom:10px;z-index:99;background:#3a0d0d;color:#ffd7d7;padding:10px 14px;border-radius:6px;font-size:12px;max-width:60vw}
+@media (max-width:760px){.menu-cols{flex-direction:column;gap:0}h1{font-size:36px}#minimap{width:120px;height:120px}}

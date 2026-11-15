@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREAKLINE — 5v5 Tactical FPS</title>
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js" } }
+</script>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- In-world HUD -->
+<div id="hud" class="hidden">
+  <canvas id="minimap" width="180" height="180"></canvas>
+  <div id="topbar">
+    <div id="teamA" class="teamscore"><span class="tname">VANGUARD</span><span id="scoreA">0</span></div>
+    <div id="timerbox"><div id="timer">1:40</div><div id="roundlabel">ROUND 1 / 15</div></div>
+    <div id="teamB" class="teamscore"><span id="scoreB">0</span><span class="tname">SENTINEL</span></div>
+  </div>
+  <div id="bombstatus"></div>
+  <div id="killfeed"></div>
+  <div id="crosshair"><span class="ch l"></span><span class="ch r"></span><span class="ch t"></span><span class="ch b"></span><span class="ch dot"></span></div>
+  <div id="hitmarker"></div>
+  <div id="bottombar">
+    <div id="healthbox"><div id="hpnum">100</div><div id="hplabel">HEALTH</div><div id="armorbar"><div id="armorfill"></div></div><div id="armorlabel">ARMOR</div></div>
+    <div id="centerinfo"><div id="hint"></div><div id="plantbar"><div id="plantfill"></div></div><div id="objective"></div></div>
+    <div id="ammobox"><div id="ammo"><span id="mag">25</span><span id="reserve">/ 75</span></div><div id="weaponname">AR-77 LONGSHOT</div><div id="money">$800</div><div id="grenades"></div></div>
+  </div>
+  <div id="banner" class="hidden"></div>
+  <div id="vignette"></div>
+  <div id="flash"></div>
+</div>
+
+<!-- Buy menu -->
+<div id="buy" class="overlay hidden">
+  <div class="panel">
+    <h2>BUY MENU <span id="buymoney">$800</span></h2>
+    <p class="sub">Freeze time — press B to close. Click or press 1–6.</p>
+    <div id="buygrid"></div>
+    <p class="sub small">Armor halves incoming damage. Grenades: press G to throw.</p>
+  </div>
+</div>
+
+<!-- Scoreboard -->
+<div id="scoreboard" class="overlay hidden">
+  <div class="panel wide">
+    <h2>BREAKLINE <span id="sb-score">0 — 0</span></h2>
+    <table id="sb-table"><thead><tr><th>Player</th><th>Team</th><th>K</th><th>D</th><th>$</th><th>Weapon</th></tr></thead><tbody></tbody></table>
+    <p class="sub">First to 8 rounds wins the match (max 15). Plant the charge at Site A or B, or eliminate the enemy team.</p>
+  </div>
+</div>
+
+<!-- Main menu -->
+<div id="menu" class="overlay">
+  <div class="panel menu-panel">
+    <h1>BREAK<span>LINE</span></h1>
+    <p class="tagline">5v5 tactical FPS — Foundry Yard. Plant the charge. Hold the lanes. Stop to aim.</p>
+    <div class="menu-cols">
+      <div>
+        <h3>HOW TO PLAY</h3>
+        <ul>
+          <li><b>WASD</b> move · <b>Mouse</b> aim · <b>Click</b> fire</li>
+          <li><b>R</b> reload · <b>Shift</b> walk slow &amp; steady · <b>Ctrl</b> crouch</li>
+          <li><b>G</b> throw grenade · <b>E</b> plant / defuse (hold) · <b>Q</b> swap weapon</li>
+          <li><b>B</b> buy menu (freeze time) · <b>Tab</b> scoreboard · <b>Esc</b> release mouse</li>
+        </ul>
+      </div>
+      <div>
+        <h3>THE MATCH</h3>
+        <ul>
+          <li>Vanguard (you) attacks — plant at <b>Site A Crane</b> or <b>Site B Silo</b>.</li>
+          <li>Sentinel defends. First to <b>8 rounds</b> wins, max 15.</li>
+          <li>Kills pay $300 · round win $3,250 · loss $1,900 + streak bonus.</li>
+          <li>Accuracy beats speed: moving, jumping and spraying widen your spread.</li>
+        </ul>
+      </div>
+    </div>
+    <button id="playbtn">DEPLOY — CLICK TO PLAY</button>
+    <p class="sub small">Runs fully offline. Bots fight, rotate, plant and defuse. No account, no network.</p>
+  </div>
+</div>
+
+<div id="deathscreen" class="overlay hidden">
+  <div class="panel"><h2>YOU ARE DOWN</h2><p class="sub" id="deathinfo">Spectating your squad…</p><p class="sub small">The round continues — your bots fight on.</p></div>
+</div>
+
+<div id="matchend" class="overlay hidden">
+  <div class="panel"><h2 id="matchtitle">VICTORY</h2><p class="sub" id="matchscore"></p><button id="againbtn">PLAY AGAIN</button></div>
+</div>
+
+<div id="errbox" class="hidden"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
